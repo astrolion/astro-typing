@@ -11,6 +11,10 @@
     ],
     "routes": [
       {
+        "src": "/(.*\\.(js|css|png|jpg|jpeg|gif|svg|ico|json|txt|woff2?|eot|ttf|map))",
+        "dest": "/$1"
+      },
+      {
         "src": "/(.*)",
         "dest": "/index.html"
       }
