@@ -204,6 +204,10 @@ export class TypingGameComponent implements OnInit, OnDestroy {
       });
     });
   }
+
+  refreshPage() {
+    window.location.reload();
+  }
 }
 
 styles: [`
