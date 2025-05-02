@@ -1,0 +1,260 @@
+.typing-game-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.game-card {
+  background-color: #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.stats-panel {
+  margin-bottom: 20px;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.stat-label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.9rem;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.info-icon {
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+  color: rgba(0, 0, 0, 0.4);
+  margin-left: 4px;
+  cursor: help;
+  transition: color 0.3s ease;
+}
+
+.stat-value {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.progress-bar {
+  margin: 20px 0;
+}
+
+.game-content {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.typing-area {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 20px;
+  min-height: 150px;
+}
+
+.text-display {
+  font-family: 'Fira Mono', 'Consolas', 'Menlo', 'Liberation Mono', monospace;
+  font-size: 24px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-break: break-word;
+  letter-spacing: normal;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  min-height: 100px;
+}
+
+.text-display span,
+.char {
+  display: inline;
+  min-width: unset;
+  padding: 0;
+}
+
+.text-display span.char {
+  display: inline;
+  min-width: unset;
+  padding: 0;
+}
+
+.text-display span {
+  display: inline;
+  min-width: unset;
+  padding: 0;
+}
+
+.char {
+  display: inline;
+  min-width: unset;
+  padding: 0;
+}
+
+.text-display span.correct {
+  color: #4caf50;
+}
+
+.text-display span.incorrect {
+  color: #f44336;
+  text-decoration: underline;
+}
+
+.text-display span.current {
+  background-color: rgba(33, 150, 243, 0.2);
+  border-radius: 2px;
+  animation: blink 1s infinite;
+}
+
+.text-display span.upcoming {
+  color: #666;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.char.space, .text-display span.char.space {
+  min-width: 1.2em;
+  display: inline-block;
+}
+
+.char.correct {
+  color: #4caf50;
+}
+
+.char.incorrect {
+  color: #f44336;
+  text-decoration: underline;
+}
+
+.char.current {
+  background-color: #e3f2fd;
+  border-radius: 2px;
+}
+
+.char.upcoming {
+  color: #666;
+}
+
+.settings-panel {
+  margin: 0;
+}
+
+.settings-panel mat-card {
+  height: 100%;
+}
+
+.settings-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+}
+
+.stat-item.completed {
+  background: transparent;
+  padding: 12px;
+  transition: all 0.3s ease;
+}
+
+.stat-item.completed .stat-label {
+  color: #1B5E20;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.stat-item.completed .stat-value {
+  color: #1B5E20;
+  font-weight: 700;
+  font-size: 1.8rem;
+}
+
+.stat-item.completed .info-icon {
+  color: #1B5E20;
+}
+
+/* Add a subtle animation when stats complete */
+@keyframes statsComplete {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.stat-item.completed {
+  animation: statsComplete 0.5s ease;
+}
+
+.stats-container {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px 0;
+  padding: 15px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+}
+
+.stat {
+  text-align: center;
+}
+
+.stat-label {
+  display: block;
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+.stat-value {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+.complete .stat-value {
+  color: #4caf50;
+}
+
+@media (max-width: 900px) {
+  .game-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .settings-panel {
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .typing-game-container {
+    padding: 10px;
+  }
+
+  .text-display {
+    font-size: 18px;
+    line-height: 1.6;
+  }
+
+  .stat-value {
+    font-size: 20px;
+  }
+} 

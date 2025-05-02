@@ -1,0 +1,97 @@
+<div class="typing-game-container" (keydown)="onKeyPress($event)" tabindex="0">
+  <mat-card class="game-card">
+    <mat-card-content>
+      <div class="stats-panel" *ngIf="showStats">
+        <mat-grid-list cols="5" rowHeight="80px">
+          <mat-grid-tile>
+            <div class="stat-item" [class.completed]="isGameComplete">
+              <span class="stat-label">
+                WPM
+                <mat-icon matTooltip="Words Per Minute: (Correct Characters / 5) / Time in Minutes" 
+                         matTooltipPosition="above"
+                         class="info-icon">info</mat-icon>
+              </span>
+              <span class="stat-value">{{ stats.wpm }}</span>
+            </div>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <div class="stat-item" [class.completed]="isGameComplete">
+              <span class="stat-label">
+                CPM
+                <mat-icon matTooltip="Characters Per Minute: Correct Characters / Time in Minutes" 
+                         matTooltipPosition="above"
+                         class="info-icon">info</mat-icon>
+              </span>
+              <span class="stat-value">{{ stats.cpm }}</span>
+            </div>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <div class="stat-item" [class.completed]="isGameComplete">
+              <span class="stat-label">
+                Accuracy
+                <mat-icon matTooltip="Accuracy: ((Total Characters - Errors) / Total Characters) * 100%" 
+                         matTooltipPosition="above"
+                         class="info-icon">info</mat-icon>
+              </span>
+              <span class="stat-value">{{ stats.accuracy }}{{ typeof stats.accuracy === 'number' ? '%' : '' }}</span>
+            </div>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <div class="stat-item" [class.completed]="isGameComplete">
+              <span class="stat-label">
+                Errors
+                <mat-icon matTooltip="Number of incorrect keystrokes" 
+                         matTooltipPosition="above"
+                         class="info-icon">info</mat-icon>
+              </span>
+              <span class="stat-value">{{ stats.errorCount }}</span>
+            </div>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <div class="stat-item" [class.completed]="isGameComplete">
+              <span class="stat-label">Time</span>
+              <span class="stat-value">{{ stats.elapsedTime }}s</span>
+            </div>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </div>
+
+      <mat-progress-bar *ngIf="showProgressBar" mode="determinate" [value]="getProgressPercentage()" class="progress-bar"></mat-progress-bar>
+
+      <div class="game-content">
+        <div class="typing-area" [class.complete]="isGameComplete">
+          <div class="text-container">
+            <div class="text-display">
+              <span *ngFor="let char of characterStatuses; let i = index" class="char" [class.correct]="char.status === 'correct'" [class.incorrect]="char.status === 'incorrect'" [class.current]="i === currentIndex">{{ char.char }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="settings-panel">
+          <mat-card>
+            <mat-card-header>
+              <mat-card-title>Settings</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <div class="settings-content">
+                <mat-slide-toggle [(ngModel)]="showProgressBar" (change)="onSettingsChange()">Show Progress Bar</mat-slide-toggle>
+                <mat-slide-toggle [(ngModel)]="showStats" (change)="onSettingsChange()">Show Stats</mat-slide-toggle>
+                <mat-slide-toggle [(ngModel)]="autoLoadNewText" (change)="onSettingsChange()">Auto Load New Text</mat-slide-toggle>
+                <mat-form-field>
+                  <mat-label>Text Difficulty</mat-label>
+                  <mat-select [(value)]="textDifficulty" (selectionChange)="onDifficultyChange($event.value)">
+                    <mat-option value="easy">Easy</mat-option>
+                    <mat-option value="medium">Medium</mat-option>
+                    <mat-option value="hard">Hard</mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <button mat-raised-button color="primary" (click)="openProgressDialog()">View Progress</button>
+                <button mat-raised-button color="accent" (click)="openProgressChartsDialog()">View Charts</button>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div> 

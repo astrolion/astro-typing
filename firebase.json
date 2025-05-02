@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "dist/astro-typing/browser",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
